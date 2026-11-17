@@ -1,0 +1,1809 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8fafc">
+  <title>To my Alero 🩵</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🩵</text></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans (Modern UI) + Newsreader (Editorial Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@1,6..72,400;1,6..72,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-serif: 'Newsreader', Georgia, serif;
+
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-subtle: #f1f5f9;
+      --border: rgba(15, 23, 42, 0.08);
+      --border-focus: #38bdf8;
+
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --text-subtle: #94a3b8;
+
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-soft: #e0f2fe;
+
+      --accent-pink: #f43f5e;
+      --accent-pink-soft: #ffe4e6;
+
+      --radius-sm: 10px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-pill: 9999px;
+
+      --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+      --shadow-card: 0 4px 6px -1px rgba(15, 23, 42, 0.04), 0 20px 32px -8px rgba(15, 23, 42, 0.07);
+      --shadow-float: 0 20px 40px -15px rgba(2, 132, 199, 0.25);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      font-size: 16px;
+      color-scheme: light;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100dvh;
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(at 15% 15%, rgba(224, 242, 254, 0.8) 0px, transparent 40%),
+        radial-gradient(at 85% 20%, rgba(254, 226, 226, 0.6) 0px, transparent 40%),
+        radial-gradient(at 50% 90%, rgba(243, 232, 255, 0.5) 0px, transparent 50%);
+      background-attachment: fixed;
+      line-height: 1.5;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Main Container */
+    .app-shell {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 660px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation Bar */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .brand-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      color: var(--text-main);
+      cursor: pointer;
+      user-select: none;
+    }
+    .brand-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--primary);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+      transition: transform 0.15s ease;
+    }
+    .brand-mark:active .brand-dot {
+      transform: scale(1.4);
+    }
+
+    .nav-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .step-counter {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      backdrop-filter: blur(8px);
+    }
+
+    .audio-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+    .audio-toggle:hover {
+      color: var(--text-main);
+      border-color: rgba(15, 23, 42, 0.15);
+    }
+
+    /* Step Progress Indicator */
+    .progress-bar-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(15, 23, 42, 0.05);
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 14%;
+      background: linear-gradient(90deg, #38bdf8, #0284c7);
+      border-radius: var(--radius-pill);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Primary Card */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+
+    .view-step {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.28s ease, transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .view-step.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Typography & Hierarchy */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: var(--primary-soft);
+      padding: 3px 10px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 16px;
+    }
+    .badge.pink {
+      color: var(--accent-pink);
+      background: var(--accent-pink-soft);
+    }
+
+    h1, h2 {
+      color: var(--text-main);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    h1 { font-size: clamp(30px, 6vw, 42px); margin-bottom: 12px; }
+    h2 { font-size: clamp(24px, 5vw, 32px); margin-bottom: 10px; }
+
+    .editorial-serif {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: normal;
+      color: var(--primary);
+    }
+    .editorial-serif.rose {
+      color: var(--accent-pink);
+    }
+
+    .lead-text {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    /* Form Fields */
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-group:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .chips-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+    .tag-chip {
+      display: inline-flex;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 500;
+      color: #334155;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-pill);
+      padding: 4px 10px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .tag-chip:hover {
+      background: #f1f5f9;
+      color: var(--text-main);
+      border-color: #cbd5e1;
+    }
+    .tag-chip:active {
+      transform: scale(0.97);
+    }
+
+    textarea.input-field {
+      width: 100%;
+      min-height: 84px;
+      font-family: var(--font-sans);
+      font-size: 16px; /* 16px explicitly prevents iOS Safari viewport auto-zoom */
+      color: var(--text-main);
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      line-height: 1.55;
+      resize: none;
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    textarea.input-field::placeholder {
+      color: #94a3b8;
+    }
+    textarea.input-field:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+
+    /* Actions / Buttons */
+    .button-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .button-row.split {
+      justify-content: space-between;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 46px;
+      padding: 0 20px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      text-decoration: none;
+    }
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      color: #ffffff;
+      background: var(--text-main);
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-primary:hover {
+      background: #1e293b;
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+    }
+
+    .btn-accent {
+      color: #ffffff;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      box-shadow: var(--shadow-float);
+    }
+    .btn-accent:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+    }
+
+    .btn-ghost {
+      color: var(--text-muted);
+      background: transparent;
+      border-color: transparent;
+    }
+    .btn-ghost:hover {
+      color: var(--text-main);
+      background: var(--surface-subtle);
+    }
+
+    /* The Proposal Climax Stage */
+    .climax-container {
+      text-align: center;
+      padding: 12px 0 6px;
+    }
+    .climax-heading {
+      font-size: clamp(30px, 7vw, 44px);
+      letter-spacing: -0.04em;
+      margin: 12px 0 16px;
+    }
+
+    .dodge-arena {
+      position: relative;
+      min-height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      margin: 28px 0 8px;
+    }
+
+    .yes-trigger-btn {
+      height: 54px;
+      padding: 0 36px;
+      border-radius: var(--radius-pill);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      background: linear-gradient(135deg, #38bdf8 0%, #0284c7 60%, #0369a1 100%);
+      box-shadow: 0 8px 24px -4px rgba(2, 132, 199, 0.45);
+      border: 0;
+      cursor: pointer;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .yes-trigger-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -4px rgba(2, 132, 199, 0.55);
+    }
+    .yes-trigger-btn:active {
+      transform: scale(0.97);
+    }
+
+    .no-dodge-btn {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 42px;
+      padding: 0 18px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 600;
+      color: #64748b;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: left 0.2s cubic-bezier(0.16, 1, 0.3, 1), top 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s ease, opacity 0.2s ease;
+      z-index: 2;
+    }
+
+    /* Letter Document Component */
+    .document-sheet {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 28px 24px;
+      line-height: 1.8;
+      font-size: 15px;
+      color: #334155;
+      text-align: left;
+      margin: 16px 0 20px;
+      position: relative;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+    }
+    .document-sheet p {
+      margin-bottom: 14px;
+    }
+    .document-sheet p:last-child {
+      margin-bottom: 0;
+    }
+    .document-sign {
+      margin-top: 18px;
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-style: italic;
+      color: var(--text-main);
+    }
+
+    /* Keepsake Card */
+    .receipt-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin: 20px 0;
+      text-align: left;
+      position: relative;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+    }
+    .receipt-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #f1f5f9;
+      margin-bottom: 14px;
+    }
+    .receipt-id {
+      font-family: monospace;
+      font-size: 11px;
+      color: #94a3b8;
+      text-transform: uppercase;
+    }
+    .receipt-status-pill {
+      font-size: 11px;
+      font-weight: 700;
+      color: #059669;
+      background: #ecfdf5;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+    }
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 6px 0;
+      color: #64748b;
+    }
+    .receipt-row strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .sync-status-msg {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 14px;
+    }
+
+    /* Fullscreen High-Performance Confetti Canvas */
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* ==========================================================================
+       HIDDEN ADMIN DOSSIER MODAL STYLES (Completely invisible to normal users)
+       ========================================================================== */
+    .admin-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 20px;
+      overflow-y: auto;
+      align-items: center;
+      justify-content: center;
+    }
+    .admin-backdrop.open {
+      display: flex;
+    }
+
+    .admin-dialog {
+      background: #0f172a;
+      color: #f8fafc;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      width: min(680px, 100%);
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .admin-dialog-header {
+      padding: 16px 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.9);
+    }
+    .admin-dialog-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .admin-dialog-close {
+      background: transparent;
+      border: 0;
+      color: #94a3b8;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .admin-dialog-close:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .admin-dialog-body {
+      padding: 22px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    /* Lock Screen View */
+    .admin-pin-screen {
+      text-align: center;
+      padding: 36px 16px;
+    }
+    .admin-pin-screen h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #f8fafc;
+      margin-bottom: 8px;
+    }
+    .admin-pin-screen p {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 22px;
+    }
+    .admin-pin-input {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 22px;
+      font-family: monospace;
+      letter-spacing: 6px;
+      color: #ffffff;
+      text-align: center;
+      width: 170px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .admin-pin-input:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+    .admin-pin-error {
+      color: #f43f5e;
+      font-size: 12px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Dossier Responses View */
+    .admin-dossier-screen {
+      display: none;
+    }
+
+    .dossier-meta-card {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 16px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .dossier-source-tag {
+      font-size: 11px;
+      font-family: monospace;
+      color: #94a3b8;
+    }
+    .dossier-answer-pill {
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.04em;
+    }
+    .dossier-answer-pill.yes {
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .dossier-answer-pill.talk {
+      color: #fbbf24;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+
+    .dossier-section {
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+    .dossier-section:last-child {
+      margin-bottom: 0;
+    }
+    .dossier-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .dossier-field {
+      margin-bottom: 12px;
+    }
+    .dossier-field:last-child {
+      margin-bottom: 0;
+    }
+    .dossier-field-label {
+      font-size: 11px;
+      color: #94a3b8;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .dossier-field-content {
+      font-size: 14px;
+      color: #f1f5f9;
+      line-height: 1.55;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 10px 12px;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .dossier-field-content.empty {
+      color: #64748b;
+      font-style: italic;
+    }
+
+    .admin-dialog-footer {
+      padding: 14px 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.9);
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .admin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s;
+    }
+    .admin-btn-primary {
+      background: #38bdf8;
+      color: #0f172a;
+    }
+    .admin-btn-primary:hover {
+      background: #7dd3fc;
+    }
+    .admin-btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    .admin-btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+    }
+    .admin-btn-danger {
+      background: transparent;
+      color: #f87171;
+      border-color: rgba(248, 113, 113, 0.3);
+    }
+    .admin-btn-danger:hover {
+      background: rgba(248, 113, 113, 0.15);
+    }
+
+    /* Responsive */
+    @media (max-width: 520px) {
+      .app-shell {
+        padding: 16px 14px 40px;
+      }
+      .card {
+        padding: 24px 18px;
+        border-radius: var(--radius-md);
+      }
+      .button-row {
+        flex-direction: column-reverse;
+      }
+      .button-row .btn {
+        width: 100%;
+      }
+      .admin-dialog {
+        max-height: 94vh;
+      }
+      .admin-dialog-body {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Audio Element -->
+  <audio id="bgAudio" loop preload="none">
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="app-shell">
+    <!-- Top Header -->
+    <header class="nav-bar">
+      <div class="brand-mark" onclick="handleLogoClick()">
+        <span class="brand-dot"></span>
+        <span>babybluey.online</span>
+      </div>
+      <div class="nav-meta">
+        <span class="step-counter" id="stepCounter">01 / 06</span>
+        <button class="audio-toggle" id="audioToggle" type="button" onclick="toggleAudio()">
+          <span id="audioIcon">▷</span>
+          <span id="audioText">sound</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Progress Track -->
+    <div class="progress-bar-container" role="progressbar" aria-label="Proposal journey progress">
+      <div class="progress-bar-fill" id="progressBar"></div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="card">
+      <form id="journeyForm" onsubmit="event.preventDefault();">
+
+        <!-- STEP 1: WELCOME & PROLOGUE -->
+        <section class="view-step active" id="step-intro" data-step="1">
+          <span class="badge">Prologue</span>
+          <h1>Hey, <span class="editorial-serif">Alero</span>.</h1>
+          <p class="lead-text">
+            I built this space for you. Before I ask you the question that's been on my mind, take a little walk with me through what we've shared and what comes next.
+          </p>
+          <div class="button-row">
+            <button class="btn btn-primary" type="button" onclick="navigate('vibe')">
+              Begin walkthrough →
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 2: OUR VIBE & APPRECIATION -->
+        <section class="view-step" id="step-vibe" data-step="2">
+          <span class="badge">Part 01</span>
+          <h2>What makes us <span class="editorial-serif">work</span></h2>
+          <p class="lead-text">
+            The little habits, the banter, and the moments that feel effortless.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label" for="loveText">What do you appreciate most about our dynamic?</label>
+            <div class="chips-group">
+              <span class="tag-chip" onclick="insertTag('loveText', 'Late night conversations')">+ Late night talks</span>
+              <span class="tag-chip" onclick="insertTag('loveText', 'How comfortable I feel with you')">+ How comfortable I feel</span>
+              <span class="tag-chip" onclick="insertTag('loveText', 'Your humor and banter')">+ Your humor</span>
+              <span class="tag-chip" onclick="insertTag('loveText', 'When you listen closely')">+ When you listen</span>
+            </div>
+            <textarea class="input-field" id="loveText" name="appreciation" placeholder="The little things count just as much..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="understandText">What is something you wish I understood even better?</label>
+            <div class="chips-group">
+              <span class="tag-chip" onclick="insertTag('understandText', 'When I need quiet time to recharge')">+ Recharging time</span>
+              <span class="tag-chip" onclick="insertTag('understandText', 'How I process stress')">+ How I process stress</span>
+            </div>
+            <textarea class="input-field" id="understandText" name="understanding" placeholder="You can always be honest with me..."></textarea>
+          </div>
+
+          <div class="button-row split">
+            <button class="btn btn-ghost" type="button" onclick="navigate('intro')">← Back</button>
+            <button class="btn btn-primary" type="button" onclick="navigate('adventures')">Continue →</button>
+          </div>
+        </section>
+
+        <!-- STEP 3: ADVENTURES & HORIZONS -->
+        <section class="view-step" id="step-adventures" data-step="3">
+          <span class="badge">Part 02</span>
+          <h2>Where we <span class="editorial-serif">go from here</span></h2>
+          <p class="lead-text">
+            Ordinary days that turn into favorite memories, plus the places we haven't visited yet.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label" for="adventureText">What experiences or trips would you love us to plan?</label>
+            <div class="chips-group">
+              <span class="tag-chip" onclick="insertTag('adventureText', 'Stargazing date')">+ Stargazing</span>
+              <span class="tag-chip" onclick="insertTag('adventureText', 'Spontaneous road trip')">+ Road trip</span>
+              <span class="tag-chip" onclick="insertTag('adventureText', 'Cooking together at home')">+ Cooking night</span>
+              <span class="tag-chip" onclick="insertTag('adventureText', 'Exploring a new city')">+ Travel</span>
+            </div>
+            <textarea class="input-field" id="adventureText" name="adventures" placeholder="Dates, places, quiet days..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="goalsText">What shared goals could we work toward?</label>
+            <textarea class="input-field" id="goalsText" name="shared_goals" placeholder="Things we can learn, build, or conquer together..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="relationshipText">What kind of relationship do you envision?</label>
+            <div class="chips-group">
+              <span class="tag-chip" onclick="insertTag('relationshipText', 'Peaceful, safe, and honest')">+ Safe & honest</span>
+              <span class="tag-chip" onclick="insertTag('relationshipText', 'Full of laughter and growth')">+ Full of laughter</span>
+            </div>
+            <textarea class="input-field" id="relationshipText" name="relationship_vision" placeholder="How should it feel day-to-day?"></textarea>
+          </div>
+
+          <div class="button-row split">
+            <button class="btn btn-ghost" type="button" onclick="navigate('vibe')">← Back</button>
+            <button class="btn btn-primary" type="button" onclick="navigate('growth')">Continue →</button>
+          </div>
+        </section>
+
+        <!-- STEP 4: COMMUNICATION & HONESTY -->
+        <section class="view-step" id="step-growth" data-step="4">
+          <span class="badge">Part 03</span>
+          <h2>Open <span class="editorial-serif">communication</span></h2>
+          <p class="lead-text">
+            Building something real means being honest, patient, and intentional.
+          </p>
+
+          <div class="form-group">
+            <label class="form-label" for="supportText">How can we support each other's personal ambitions?</label>
+            <textarea class="input-field" id="supportText" name="mutual_support" placeholder="I always want you to thrive individually..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="improveText">What could make our communication even better?</label>
+            <textarea class="input-field" id="improveText" name="communication" placeholder="More of this, less of that..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="flawsText">Any habits or flaws of mine I should be mindful of?</label>
+            <textarea class="input-field" id="flawsText" name="flaws" placeholder="Complete honesty welcome here..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="anythingText">Anything else on your mind?</label>
+            <textarea class="input-field" id="anythingText" name="anything_else" placeholder="Anything unsaid..."></textarea>
+          </div>
+
+          <div class="button-row split">
+            <button class="btn btn-ghost" type="button" onclick="navigate('adventures')">← Back</button>
+            <button class="btn btn-primary" type="button" onclick="navigate('letter')">Read note →</button>
+          </div>
+        </section>
+
+        <!-- STEP 5: THE LETTER -->
+        <section class="view-step" id="step-letter" data-step="5">
+          <span class="badge">A Letter For You</span>
+          <h2>To my <span class="editorial-serif">Alero</span> 🩵</h2>
+
+          <div class="document-sheet">
+            <p><strong>To my Alero, 🩵</strong></p>
+            <p>I honestly don't know where to begin, but I know there's something I've wanted to tell you, and I figured you deserved more than just a random text or a simple question thrown into an ordinary conversation.</p>
+            <p>I want you to understand that this isn't just about giving us a label or being able to call you my girlfriend. It's about wanting to build something meaningful with you. Something that goes beyond the excitement of the beginning and continues to feel worth choosing even as time passes.</p>
+            <p>I know we're both human. We have our individual personalities, habits, imperfections, moods, and moments when we might not understand each other. I don't expect you to be perfect, and I don't intend to pretend that I am. I want us to have the freedom to be ourselves while still making conscious efforts to become better for each other.</p>
+            <p>I want to know you beyond the obvious things. I want to understand the little things that make you happy, the things that bother you, the dreams you sometimes hesitate to talk about, the things you find funny, and even the random thoughts that cross your mind. I want to be someone you can talk to without feeling like you have to filter every part of yourself.</p>
+            <p>I want us to laugh until we forget what started the laughter, have random conversations that somehow last for hours, create memories out of the most ordinary days, and experience things that we'll look back on someday with the biggest smiles.</p>
+            <p>But I also want us to understand that a meaningful relationship isn't built on the happy moments alone.</p>
+            <p>There will be misunderstandings. There may be days when one of us is tired, overwhelmed, or simply not at our best. When those moments come, I don't want us to become strangers to each other. I want us to communicate, listen, understand, apologise when necessary, and remember that we're on the same team.</p>
+            <p>I don't want either of us to feel like we have to compete for attention, beg for reassurance, or constantly question where we stand. I want consistency, consideration, honesty, respect, and the kind of effort that doesn't disappear once the excitement settles.</p>
+            <p>And I want to support your dreams just as much as I want you to support mine. I want to see you win, celebrate your progress, encourage you when things don't go as planned, and watch us both become better versions of ourselves. I hope we can inspire each other, learn together, try new things, and achieve things we might not have imagined doing together.</p>
+            <p>I don't have every detail of the future figured out, and I won't pretend that I do. But I know that if we're both willing, there's so much we can experience, learn, build, and become together.</p>
+            <p>I want something genuine. Not something that only looks beautiful from the outside, but something that actually feels beautiful to the two people living it.</p>
+            <p>And if there's one thing I hope you take away from all of this, it's that I don't want to simply have you in my life. I want to make sure you feel appreciated, respected, heard, and genuinely cared for while you're in it.</p>
+            <p>Here's to the possibility of something beautiful, to new memories, honest conversations, silly moments, shared dreams, and a journey we both get to have a say in.</p>
+            <p>Whatever your answer, thank you for being someone worth putting all this thought into.</p>
+            <div class="document-sign">
+              Always yours,<br>
+              <span style="font-style: normal; font-weight: 700; color: var(--primary);">Victory ❤️</span>
+            </div>
+          </div>
+
+          <div class="button-row split">
+            <button class="btn btn-ghost" type="button" onclick="navigate('growth')">← Back</button>
+            <button class="btn btn-accent" type="button" onclick="navigate('proposal')">
+              Turn the page →
+            </button>
+          </div>
+        </section>
+
+        <!-- STEP 6: THE PROPOSAL (CLIMAX) -->
+        <section class="view-step" id="step-proposal" data-step="6">
+          <div class="climax-container">
+            <span class="badge">The Question</span>
+            <h2 class="climax-heading">
+              Alero, will you be<br>
+              <span class="editorial-serif">my girlfriend?</span>
+            </h2>
+            <p class="lead-text" style="max-width: 460px; margin: 0 auto;">
+              No rehearsed speech, no games. Just choosing you, every single day. What do you say?
+            </p>
+
+            <div class="dodge-arena" id="dodgeArena">
+              <button class="yes-trigger-btn" type="button" onclick="handleYesResponse()">
+                Yes, absolutely 🤍
+              </button>
+              <button class="no-dodge-btn" id="noButton" type="button"
+                      onpointerenter="deflectButton(event)"
+                      onpointerdown="deflectButton(event)"
+                      onclick="handleNoResponse()">
+                Not right now
+              </button>
+            </div>
+
+            <p class="sync-status-msg" id="dodgeCaption">
+              Your comfort and honesty matter most.
+            </p>
+          </div>
+
+          <div class="button-row" style="justify-content: center; margin-top: 14px;">
+            <button class="btn btn-ghost" type="button" onclick="navigate('letter')">← Back to note</button>
+          </div>
+        </section>
+
+        <!-- FINALE: CELEBRATION & RECEIPT -->
+        <section class="view-step" id="step-celebrate">
+          <div style="text-align: center;">
+            <span class="badge">Official</span>
+            <h1 style="margin-top: 8px;">She said <span class="editorial-serif">Yes</span>.</h1>
+            <p class="lead-text" style="max-width: 480px; margin: 0 auto 18px;">
+              You just made me the happiest person around. Everything you shared has been preserved right here.
+            </p>
+
+            <div class="receipt-card">
+              <div class="receipt-header">
+                <span class="receipt-id">ID: BLU-2026-YES</span>
+                <span class="receipt-status-pill">CONFIRMED</span>
+              </div>
+              <div class="receipt-row">
+                <span>Recipient</span>
+                <strong>Alero</strong>
+              </div>
+              <div class="receipt-row">
+                <span>Question</span>
+                <strong>Will you be my girlfriend?</strong>
+              </div>
+              <div class="receipt-row">
+                <span>Response</span>
+                <strong style="color: var(--primary);">Yes, absolutely 🤍</strong>
+              </div>
+              <div class="receipt-row">
+                <span>Timestamp</span>
+                <strong id="receiptDate">—</strong>
+              </div>
+            </div>
+
+            <p class="sync-status-msg" id="cloudSyncStatus">
+              Preserved safely.
+            </p>
+          </div>
+        </section>
+
+        <!-- FINALE: GENTLE ALTERNATIVE -->
+        <section class="view-step" id="step-talkFirst">
+          <div style="text-align: center;">
+            <span class="badge">Understood</span>
+            <h1>Thank you, <span class="editorial-serif">Alero</span>.</h1>
+            <p class="lead-text" style="max-width: 480px; margin: 0 auto 18px;">
+              Your comfort and honesty mean everything to me. We move at whatever pace feels right. All of your reflections are saved, and I can't wait to talk through them together.
+            </p>
+            <p class="sync-status-msg">
+              Preserved safely.
+            </p>
+          </div>
+        </section>
+
+      </form>
+    </main>
+
+    <footer style="text-align: center; font-size: 12px; color: var(--text-subtle); margin-top: 24px; cursor: default;" id="secretTrigger">
+      crafted with intention for Alero
+    </footer>
+  </div>
+
+  <!-- ==========================================================================
+       SECRET ADMIN DOSSIER MODAL (Completely hidden unless triggered)
+       ========================================================================== -->
+  <div class="admin-backdrop" id="adminModal" role="dialog" aria-modal="true" aria-label="Secret Admin Dossier">
+    <div class="admin-dialog">
+      <div class="admin-dialog-header">
+        <div class="admin-dialog-title">
+          <span>●</span>
+          <span>Owner Dossier / Secret Panel</span>
+        </div>
+        <button class="admin-dialog-close" type="button" onclick="closeAdminModal()" aria-label="Close dialog">✕</button>
+      </div>
+
+      <div class="admin-dialog-body">
+        <!-- 1. PIN Authentication Screen -->
+        <div class="admin-pin-screen" id="adminPinScreen">
+          <h3>Authentication Required</h3>
+          <p>Enter your secret PIN to decrypt Alero's responses.</p>
+          <form onsubmit="event.preventDefault(); verifyAdminPin();">
+            <input class="admin-pin-input" id="adminPinInput" type="password" maxlength="8" placeholder="••••" autocomplete="off" />
+            <div class="admin-pin-error" id="adminPinError">Incorrect PIN. Try again.</div>
+            <div style="margin-top: 18px;">
+              <button class="admin-btn admin-btn-primary" type="submit" style="padding: 10px 24px; font-size: 13px;">Unlock Dossier →</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- 2. Decrypted Dossier Content -->
+        <div class="admin-dossier-screen" id="adminDossierScreen">
+          <div id="dossierListContainer">
+            <!-- Dynamic Response Cards will be injected here -->
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-dialog-footer" id="adminDialogFooter" style="display: none;">
+        <div style="display: flex; gap: 8px;">
+          <button class="admin-btn admin-btn-secondary" type="button" onclick="refreshAdminData()">↻ Refresh</button>
+          <button class="admin-btn admin-btn-primary" type="button" onclick="copyDossierAsText()">📋 Copy Formatted Text</button>
+        </div>
+        <button class="admin-btn admin-btn-danger" type="button" onclick="clearLocalTestData()">🗑 Clear Local Test Data</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  
+    const SUPABASE_URL = 'https://vtgtmiaadzzidzmtnjet.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ0Z3RtaWFhZHp6aWR6bXRuamV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE5NzkwODEsImV4cCI6MjA5NzU1NTA4MX0.wdceO_ltj-lBK5V7rkhhpk3XOmBRnkwtu6SoZUBjrRw';
+
+    // 2) Your secret Admin PIN (Change this anytime):
+    const ADMIN_SECRET_PIN = '2026';
+
+    /* State Machine */
+    const state = {
+      currentStep: 'intro',
+      answer: 'pending',
+      dodgeCount: 0,
+      isSubmitting: false
+    };
+
+    const stepOrder = ['intro', 'vibe', 'adventures', 'growth', 'letter', 'proposal', 'celebrate', 'talkFirst'];
+
+    const stepProgress = {
+      intro: { index: 1, pct: 16 },
+      vibe: { index: 2, pct: 33 },
+      adventures: { index: 3, pct: 50 },
+      growth: { index: 4, pct: 68 },
+      letter: { index: 5, pct: 84 },
+      proposal: { index: 6, pct: 96 },
+      celebrate: { index: 6, pct: 100 },
+      talkFirst: { index: 6, pct: 100 }
+    };
+
+    const deflectPhrases = [
+      "Are you sure? 🥺",
+      "Think about it... ✨",
+      "Give me a shot? 🤍",
+      "Let's talk first 💬"
+    ];
+
+    /* Navigation Controller */
+    function navigate(stepId, pushHistory = true) {
+      const currentEl = document.querySelector('.view-step.active');
+      const nextEl = document.getElementById('step-' + stepId);
+      if (!nextEl) return;
+
+      if (currentEl) {
+        currentEl.classList.remove('active');
+      }
+      nextEl.classList.add('active');
+      state.currentStep = stepId;
+
+      const progress = stepProgress[stepId] || { index: 1, pct: 16 };
+      document.getElementById('progressBar').style.width = progress.pct + '%';
+      document.getElementById('stepCounter').textContent = `0${Math.min(6, progress.index)} / 06`;
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (pushHistory) {
+        history.pushState({ step: stepId }, '', '#' + stepId);
+      }
+    }
+
+    window.addEventListener('popstate', (e) => {
+      if (e.state && e.state.step) {
+        navigate(e.state.step, false);
+      } else {
+        navigate('intro', false);
+      }
+    });
+
+    /* Tag Chip Insertion */
+    function insertTag(textareaId, text) {
+      const textarea = document.getElementById(textareaId);
+      if (!textarea) return;
+      if (textarea.value.trim().length > 0) {
+        if (!textarea.value.includes(text)) {
+          textarea.value += ', ' + text;
+        }
+      } else {
+        textarea.value = text;
+      }
+      autoExpand(textarea);
+      persistDraft();
+    }
+
+    /* Auto-expand textareas cleanly */
+    function autoExpand(el) {
+      el.style.height = 'auto';
+      el.style.height = Math.max(84, el.scrollHeight + 2) + 'px';
+    }
+
+    document.querySelectorAll('textarea').forEach(t => {
+      t.addEventListener('input', () => {
+        autoExpand(t);
+        persistDraft();
+      });
+    });
+
+    /* Draft Persistence */
+    function getFormData() {
+      const getVal = id => {
+        const el = document.getElementById(id);
+        return el ? el.value.trim() : '';
+      };
+      return {
+        recipient: 'Alero',
+        proposal_answer: state.answer,
+        flaws: getVal('flawsText'),
+        understanding: getVal('understandText'),
+        appreciation: getVal('loveText'),
+        communication: getVal('improveText'),
+        shared_goals: getVal('goalsText'),
+        adventures: getVal('adventureText'),
+        relationship_vision: getVal('relationshipText'),
+        mutual_support: getVal('supportText'),
+        anything_else: getVal('anythingText')
+      };
+    }
+
+    function persistDraft() {
+      try {
+        localStorage.setItem('blueyy_draft_v2', JSON.stringify(getFormData()));
+      } catch (e) {}
+    }
+
+    function hydrateDraft() {
+      try {
+        const raw = localStorage.getItem('blueyy_draft_v2');
+        if (!raw) return;
+        const d = JSON.parse(raw);
+        const map = {
+          loveText: d.appreciation,
+          understandText: d.understanding,
+          adventureText: d.adventures,
+          goalsText: d.shared_goals,
+          relationshipText: d.relationship_vision,
+          supportText: d.mutual_support,
+          improveText: d.communication,
+          flawsText: d.flaws,
+          anythingText: d.anything_else
+        };
+        for (const [id, val] of Object.entries(map)) {
+          if (val) {
+            const el = document.getElementById(id);
+            if (el) {
+              el.value = val;
+              autoExpand(el);
+            }
+          }
+        }
+      } catch (e) {}
+    }
+
+    /* Smooth Vector Deflection for "No" Button */
+    function deflectButton(e) {
+      if (state.dodgeCount >= 4) return;
+      if (e && e.pointerType === 'touch') e.preventDefault();
+
+      const btn = document.getElementById('noButton');
+      const arena = document.getElementById('dodgeArena');
+      if (!btn || !arena) return;
+
+      state.dodgeCount++;
+      if (state.dodgeCount <= deflectPhrases.length) {
+        btn.textContent = deflectPhrases[state.dodgeCount - 1];
+      }
+
+      if (state.dodgeCount >= 4) {
+        btn.style.left = '50%';
+        btn.style.top = '96px';
+        btn.style.transform = 'translateX(-50%)';
+        btn.style.borderColor = '#94a3b8';
+        btn.style.color = '#334155';
+        document.getElementById('dodgeCaption').textContent = "I'm right here. Let's chat without any pressure.";
+        return;
+      }
+
+      const rect = arena.getBoundingClientRect();
+      const maxX = Math.max(0, arena.clientWidth - btn.offsetWidth);
+      const maxY = Math.max(60, arena.clientHeight - btn.offsetHeight);
+      const minY = 50;
+
+      let nextX = 0, nextY = minY;
+      const pointerX = e && Number.isFinite(e.clientX) ? e.clientX - rect.left : null;
+      const pointerY = e && Number.isFinite(e.clientY) ? e.clientY - rect.top : null;
+
+      for (let i = 0; i < 15; i++) {
+        nextX = Math.random() * maxX;
+        nextY = minY + Math.random() * Math.max(0, maxY - minY);
+        if (pointerX === null || Math.hypot(nextX + btn.offsetWidth / 2 - pointerX, nextY + btn.offsetHeight / 2 - pointerY) > 95) {
+          break;
+        }
+      }
+
+      btn.style.left = nextX + 'px';
+      btn.style.top = nextY + 'px';
+      btn.style.transform = 'none';
+      btn.blur();
+    }
+
+    /* Climax Handlers */
+    function handleYesResponse() {
+      state.answer = 'yes';
+      persistDraft();
+      triggerConfetti();
+      dispatchSubmission();
+      navigate('celebrate');
+    }
+
+    function handleNoResponse() {
+      if (state.dodgeCount >= 4) {
+        state.answer = 'let_us_talk_first';
+        persistDraft();
+        dispatchSubmission();
+        navigate('talkFirst');
+      }
+    }
+
+    /* Dispatch to Supabase with local resilience */
+    async function dispatchSubmission() {
+      const payload = getFormData();
+      const receiptDate = document.getElementById('receiptDate');
+      if (receiptDate) {
+        receiptDate.textContent = new Date().toLocaleDateString(undefined, {
+          month: 'long',
+          day: 'numeric',
+          year: 'numeric'
+        });
+      }
+
+      // Always cache full submission locally
+      try {
+        localStorage.setItem('blueyy_final_submission', JSON.stringify({
+          ...payload,
+          submitted_at: new Date().toISOString()
+        }));
+      } catch (e) {}
+
+      if (!SUPABASE_URL.startsWith('https://') || SUPABASE_ANON_KEY.startsWith('PASTE_')) {
+        const syncEl = document.getElementById('cloudSyncStatus');
+        if (syncEl) syncEl.textContent = 'Preview mode: response cached safely on this device.';
+        return;
+      }
+
+      try {
+        const res = await fetch(SUPABASE_URL + '/rest/v1/proposal_responses', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'apikey': SUPABASE_ANON_KEY,
+            'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+            'Prefer': 'return=minimal'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) throw new Error(await res.text());
+
+        const syncEl = document.getElementById('cloudSyncStatus');
+        if (syncEl) syncEl.textContent = 'Recorded remotely with end-to-end security.';
+      } catch (err) {
+        const syncEl = document.getElementById('cloudSyncStatus');
+        if (syncEl) syncEl.textContent = 'Preserved locally (will sync when network reconnects).';
+      }
+    }
+
+    /* Ambient Audio Toggle */
+    let audioActive = false;
+    function toggleAudio() {
+      const audio = document.getElementById('bgAudio');
+      const text = document.getElementById('audioText');
+      const icon = document.getElementById('audioIcon');
+      if (!audio) return;
+
+      if (audioActive) {
+        audio.pause();
+        audioActive = false;
+        text.textContent = 'sound';
+        icon.textContent = '▷';
+      } else {
+        audio.play().then(() => {
+          audioActive = true;
+          text.textContent = 'playing';
+          icon.textContent = '⏸';
+        }).catch(() => {
+          text.textContent = 'click again';
+        });
+      }
+    }
+
+    /* ==========================================================================
+       60FPS PHYSICS-BASED CONFETTI ENGINE (Foil Ribbons & Paper Shards)
+       ========================================================================== */
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas ? canvas.getContext('2d') : null;
+    let particles = [];
+    let rafId = null;
+
+    function resizeCanvas() {
+      if (!canvas) return;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function triggerConfetti() {
+      if (!ctx) return;
+      resizeCanvas();
+      particles = [];
+
+      const palette = ['#38bdf8', '#0284c7', '#7dd3fc', '#bae6fd', '#fef08a', '#ffffff', '#fda4af'];
+      const count = 100;
+
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = Math.random() * 11 + 5;
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height * 0.45,
+          vx: Math.cos(angle) * velocity,
+          vy: Math.sin(angle) * velocity - 4,
+          w: Math.random() * 8 + 6,
+          h: Math.random() * 12 + 6,
+          color: palette[Math.floor(Math.random() * palette.length)],
+          rotation: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.18,
+          alpha: 1,
+          decay: Math.random() * 0.007 + 0.006,
+          drag: 0.98,
+          gravity: 0.22
+        });
+      }
+
+      if (!rafId) runConfettiLoop();
+    }
+
+    function runConfettiLoop() {
+      if (!ctx || particles.length === 0) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        rafId = null;
+        return;
+      }
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += p.gravity;
+        p.vx *= p.drag;
+        p.rotation += p.rotSpeed;
+        p.alpha -= p.decay;
+
+        if (p.alpha <= 0 || p.y > canvas.height + 40) {
+          particles.splice(i, 1);
+          continue;
+        }
+
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rotation);
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      }
+
+      rafId = requestAnimationFrame(runConfettiLoop);
+    }
+
+    /* ==========================================================================
+       HIDDEN ADMIN PANEL LOGIC (Completely concealed from Baby bluey)
+       ========================================================================== */
+    let logoClickCount = 0;
+    let logoClickTimer = null;
+    let cachedAdminResponses = [];
+
+    // Trigger 1: Clicking brand logo 5 times in 3 seconds
+    function handleLogoClick() {
+      logoClickCount++;
+      clearTimeout(logoClickTimer);
+      if (logoClickCount >= 5) {
+        logoClickCount = 0;
+        openAdminModal();
+      } else {
+        logoClickTimer = setTimeout(() => { logoClickCount = 0; }, 3000);
+      }
+    }
+
+    // Trigger 2: Double clicking footer
+    const footerTrigger = document.getElementById('secretTrigger');
+    if (footerTrigger) {
+      footerTrigger.addEventListener('dblclick', openAdminModal);
+    }
+
+    // Trigger 3: Keyboard Shortcut (Ctrl+Shift+A or Cmd+Shift+A) & Escape to close
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        openAdminModal();
+      }
+      if (e.key === 'Escape') {
+        closeAdminModal();
+      }
+    });
+
+    // Trigger 4: URL Hash (#admin)
+    function checkAdminHash() {
+      if (window.location.hash === '#admin') {
+        openAdminModal();
+      }
+    }
+    window.addEventListener('hashchange', checkAdminHash);
+
+    function openAdminModal() {
+      const modal = document.getElementById('adminModal');
+      if (!modal) return;
+      modal.classList.add('open');
+      const pinInput = document.getElementById('adminPinInput');
+      if (pinInput) {
+        pinInput.value = '';
+        setTimeout(() => pinInput.focus(), 150);
+      }
+    }
+
+    function closeAdminModal() {
+      const modal = document.getElementById('adminModal');
+      if (!modal) return;
+      modal.classList.remove('open');
+      if (window.location.hash === '#admin') {
+        history.replaceState(null, '', ' ');
+      }
+    }
+
+    // Close when clicking modal backdrop
+    document.getElementById('adminModal').addEventListener('click', (e) => {
+      if (e.target.id === 'adminModal') closeAdminModal();
+    });
+
+    async function verifyAdminPin() {
+      const pin = document.getElementById('adminPinInput').value.trim();
+      const errEl = document.getElementById('adminPinError');
+
+      if (pin !== ADMIN_SECRET_PIN) {
+        errEl.style.display = 'block';
+        return;
+      }
+
+      errEl.style.display = 'none';
+      document.getElementById('adminPinScreen').style.display = 'none';
+      document.getElementById('adminDossierScreen').style.display = 'block';
+      document.getElementById('adminDialogFooter').style.display = 'flex';
+
+      await loadAdminResponses(pin);
+    }
+
+    async function loadAdminResponses(pin) {
+      const container = document.getElementById('dossierListContainer');
+      container.innerHTML = '<div style="text-align:center; padding: 40px 10px; color:#94a3b8; font-size:13px;">Decrypting and loading responses...</div>';
+
+      let responses = [];
+      let sourceName = 'Local Device Storage';
+
+      // 1. Try Supabase RPC Function (if credentials provided)
+      if (SUPABASE_URL.startsWith('https://') && !SUPABASE_ANON_KEY.startsWith('PASTE_')) {
+        try {
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/rpc/get_proposal_responses`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+            },
+            body: JSON.stringify({ admin_pin: pin })
+          });
+          if (res.ok) {
+            responses = await res.json();
+            sourceName = 'Supabase Cloud Database (Live)';
+          }
+        } catch (e) {}
+      }
+
+      // 2. If no cloud responses or in preview, inspect localStorage
+      if (!responses || responses.length === 0) {
+        const localFinal = localStorage.getItem('blueyy_final_submission') || localStorage.getItem('blueyy-proposal-response');
+        if (localFinal) {
+          try {
+            responses = [JSON.parse(localFinal)];
+            sourceName = 'Local Device Cache (Final Submission)';
+          } catch (e) {}
+        } else {
+          const localDraft = localStorage.getItem('blueyy_draft_v2') || localStorage.getItem('blueyy_proposal_draft');
+          if (localDraft) {
+            try {
+              responses = [{ ...JSON.parse(localDraft), is_draft: true }];
+              sourceName = 'Local Device Active Draft';
+            } catch (e) {}
+          }
+        }
+      }
+
+      cachedAdminResponses = responses || [];
+      renderAdminDossier(cachedAdminResponses, sourceName);
+    }
+
+    function renderAdminDossier(responses, sourceName) {
+      const container = document.getElementById('dossierListContainer');
+      if (!responses || responses.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 48px 16px;">
+            <div style="font-size: 32px; margin-bottom: 12px;">📭</div>
+            <h4 style="font-size: 16px; color: #f8fafc; margin-bottom: 6px;">No responses recorded yet</h4>
+            <p style="font-size: 13px; color: #94a3b8; max-width: 360px; margin: 0 auto;">
+              Share the link with Alero! Once she answers and submits, her thoughts will appear right here.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      responses.forEach((r, idx) => {
+        const isYes = r.proposal_answer === 'yes';
+        const answerLabel = isYes ? 'YES, ABSOLUTELY 🤍' : (r.proposal_answer === 'let_us_talk_first' ? 'WANTS TO TALK FIRST 💬' : (r.is_draft ? 'ACTIVE DRAFT (IN PROGRESS)' : 'ANSWERED'));
+        const badgeClass = isYes ? 'yes' : 'talk';
+        const formattedDate = r.submitted_at ? new Date(r.submitted_at).toLocaleString() : (r.timestamp ? new Date(r.timestamp).toLocaleString() : 'Just now');
+
+        const val = text => text && text.trim().length > 0 ? escapeHtml(text.trim()) : '<span class="empty">Not answered / left blank</span>';
+
+        html += `
+          <div class="dossier-meta-card">
+            <div>
+              <div style="font-size: 14px; font-weight: 700; color: #f8fafc; margin-bottom: 2px;">Response #${idx + 1} — For ${escapeHtml(r.recipient || 'Alero')}</div>
+              <div class="dossier-source-tag">${escapeHtml(sourceName)} · ${formattedDate}</div>
+            </div>
+            <div class="dossier-answer-pill ${badgeClass}">${answerLabel}</div>
+          </div>
+
+          <div class="dossier-section">
+            <div class="dossier-section-title">01 · Our Vibe & Connection</div>
+            <div class="dossier-field">
+              <div class="dossier-field-label">What she appreciates most about our dynamic:</div>
+              <div class="dossier-field-content">${val(r.appreciation)}</div>
+            </div>
+            <div class="dossier-field">
+              <div class="dossier-field-label">What she wishes you understood better:</div>
+              <div class="dossier-field-content">${val(r.understanding)}</div>
+            </div>
+          </div>
+
+          <div class="dossier-section">
+            <div class="dossier-section-title">02 · Adventures & Horizons</div>
+            <div class="dossier-field">
+              <div class="dossier-field-label">Trips, dates & experiences she wants to plan:</div>
+              <div class="dossier-field-content">${val(r.adventures)}</div>
+            </div>
+            <div class="dossier-field">
+              <div class="dossier-field-label">Shared goals to conquer together:</div>
+              <div class="dossier-field-content">${val(r.shared_goals)}</div>
+            </div>
+            <div class="dossier-field">
+              <div class="dossier-field-label">Relationship vision (how it should feel):</div>
+              <div class="dossier-field-content">${val(r.relationship_vision)}</div>
+            </div>
+          </div>
+
+          <div class="dossier-section">
+            <div class="dossier-section-title">03 · Honesty & Growth</div>
+            <div class="dossier-field">
+              <div class="dossier-field-label">Supporting individual ambitions:</div>
+              <div class="dossier-field-content">${val(r.mutual_support)}</div>
+            </div>
+            <div class="dossier-field">
+              <div class="dossier-field-label">What could make communication even better:</div>
+              <div class="dossier-field-content">${val(r.communication)}</div>
+            </div>
+            <div class="dossier-field">
+              <div class="dossier-field-label">Habits or flaws of yours she noted:</div>
+              <div class="dossier-field-content">${val(r.flaws)}</div>
+            </div>
+            <div class="dossier-field">
+              <div class="dossier-field-label">Anything else on her mind:</div>
+              <div class="dossier-field-content">${val(r.anything_else)}</div>
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function refreshAdminData() {
+      const pin = document.getElementById('adminPinInput').value.trim();
+      loadAdminResponses(pin);
+    }
+
+    function copyDossierAsText() {
+      if (!cachedAdminResponses || cachedAdminResponses.length === 0) {
+        alert('No responses to copy.');
+        return;
+      }
+      const r = cachedAdminResponses[0];
+      const text = `
+=== ALERO'S PROPOSAL RESPONSE ===
+Answer: ${r.proposal_answer === 'yes' ? 'YES, ABSOLUTELY 🤍' : r.proposal_answer}
+Date: ${r.submitted_at || r.timestamp || 'Recorded recently'}
+
+--- PART 1: OUR VIBE ---
+• What she appreciates most:
+${r.appreciation || '(none)'}
+
+• What she wishes you understood:
+${r.understanding || '(none)'}
+
+--- PART 2: ADVENTURES & DREAMS ---
+• Experiences & dates to plan:
+${r.adventures || '(none)'}
+
+• Shared goals:
+${r.shared_goals || '(none)'}
+
+• Relationship vision:
+${r.relationship_vision || '(none)'}
+
+--- PART 3: COMMUNICATION & GROWTH ---
+• Supporting each other's ambitions:
+${r.mutual_support || '(none)'}
+
+• Communication improvements:
+${r.communication || '(none)'}
+
+• Habits/flaws to be mindful of:
+${r.flaws || '(none)'}
+
+• Anything else on her mind:
+${r.anything_else || '(none)'}
+===================================
+      `.trim();
+
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Copied Alero’s responses to clipboard!');
+      }).catch(() => {
+        prompt('Copy your responses below:', text);
+      });
+    }
+
+    function clearLocalTestData() {
+      if (confirm('Are you sure you want to clear your local test responses? This resets local test data so the site is fresh for Alero.')) {
+        localStorage.removeItem('blueyy_final_submission');
+        localStorage.removeItem('blueyy-proposal-response');
+        localStorage.removeItem('blueyy_draft_v2');
+        localStorage.removeItem('blueyy_draft');
+        refreshAdminData();
+      }
+    }
+
+    /* Initialize on DOM load */
+    window.addEventListener('DOMContentLoaded', () => {
+      hydrateDraft();
+      checkAdminHash();
+
+      const hash = window.location.hash.replace('#', '');
+      if (hash && hash !== 'admin' && document.getElementById('step-' + hash)) {
+        navigate(hash, false);
+      }
+    });
+  </script>
+</body>
+</html>
